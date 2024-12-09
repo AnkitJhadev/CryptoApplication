@@ -1,0 +1,74 @@
+/* Basic styling for the navbar */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #2d2d2d; /* Dark background for the navbar */
+    color: #fff;
+  }
+  
+  .nav img {
+    height: 40px;
+    width: auto;
+  }
+  
+  .nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav ul li {
+    margin-right: 30px;
+    cursor: pointer;
+    font-weight: 500; /* Adjusted weight for a balanced look */
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif; /* New modern font */
+    transition: color 0.3s ease;
+  }
+  
+  
+  .nav ul li:hover {
+    color: #f9a825; /* Golden color on hover */
+  }
+  
+  /* Styling for the right section of the navbar */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .nav-right select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 14px;
+  }
+  
+  .nav-right button {
+    display: flex;
+    align-items: center;
+    background-color: #f9a825; /* Golden background for the button */
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .nav-right button img {
+    margin-left: 8px;
+    height: 16px;
+    width: auto;
+  }
+  
+  /* Hover effects for the button */
+  .nav-right button:hover {
+    background-color: #ffca28; /* Lighter golden color on hover */
+  }
+  
