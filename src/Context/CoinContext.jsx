@@ -2,12 +2,17 @@ import { createContext, useEffect, useState } from "react";
 
 export const CoinContext = createContext();
 
+const apiKey = import.meta.env.VITE_COINGECKO_API_KEY;
+
+
 export const CoinContextProvider = ({ children }) => {
-  const [allCoin, setAllCoin] = useState([]);
+  const [allCoins, setAllCoins] = useState([]);
   const [currency, setCurrency] = useState({
     name: "usd",
     symbol: "$",
   });
+
+  // console.log(process.env.REACT_APP_COINGECKO_API_KEY);
 
   const fetchAllCoins = async () => {
     try {
@@ -15,7 +20,7 @@ export const CoinContextProvider = ({ children }) => {
         method: "GET",
         headers: {
           accept: "application/json",
-          "x-cg-demo-api-key": process.env.REACT_APP_COINGECKO_API_KEY, // Use environment variable
+          "x-cg-demo-api-key": apiKey, // Use environment variable
         },
       };
 
@@ -29,7 +34,7 @@ export const CoinContextProvider = ({ children }) => {
       }
 
       const data = await response.json();
-      setAllCoin(data);
+      setAllCoins(data);
     } catch (error) {
       console.error("Error fetching coins:", error);
     }
@@ -40,8 +45,8 @@ export const CoinContextProvider = ({ children }) => {
   }, [currency]);
 
   const CoinContextValue = {
-    allCoin,
-    setAllCoin,
+    allCoins,
+    setAllCoins,
     currency,
     setCurrency,
   };
