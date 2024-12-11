@@ -1,5 +1,7 @@
 .home-container {
   padding: 20px;
+  background-color: #f8f9fa; /* Light gray background */
+  font-family: 'Arial', sans-serif;
 }
 
 .search-sort-container {
@@ -7,63 +9,97 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  gap: 20px;
 }
 
 .search-bar {
   flex: 1;
-  padding: 10px;
-  margin-right: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 12px;
+  border: 2px solid #007bff; /* Blue border */
+  border-radius: 10px;
   font-size: 16px;
+  transition: all 0.3s;
+}
+
+.search-bar:focus {
+  border-color: #0056b3; /* Darker blue on focus */
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
 }
 
 .sort-dropdown {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 12px;
+  border: 2px solid #007bff; /* Blue border */
+  border-radius: 10px;
   font-size: 16px;
+  background-color: #ffffff;
+  transition: all 0.3s;
+}
+
+.sort-dropdown:hover {
+  border-color: #0056b3; /* Darker blue on hover */
 }
 
 .coins-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
 .coin-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
+  border: 1px solid #dee2e6; /* Light gray border */
+  border-radius: 12px;
+  padding: 20px;
   text-align: center;
-  transition: transform 0.3s;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
 }
 
 .coin-card:hover {
   transform: scale(1.05);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 
 .coin-image {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+.coin-card h3 {
+  font-size: 18px;
+  color: #343a40; /* Dark gray text */
   margin-bottom: 10px;
+}
+
+.coin-card p {
+  font-size: 16px;
+  color: #6c757d; /* Medium gray text */
 }
 
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .pagination button {
-  padding: 8px 12px;
+  padding: 10px 15px;
   margin: 0 10px;
-  border: 1px solid #ccc;
-  background-color: #f0f0f0;
+  border: 1px solid #007bff; /* Blue border */
+  background-color: #ffffff;
+  color: #007bff; /* Blue text */
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #007bff;
+  color: #ffffff; /* White text on hover */
 }
 
 .pagination button:disabled {
@@ -74,4 +110,5 @@
 .pagination span {
   font-size: 16px;
   font-weight: bold;
+  color: #343a40; /* Dark gray */
 }

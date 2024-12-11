@@ -2,29 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { CoinContext } from '../../Context/CoinContext';
 import LineChart from '../../components/LineChart/LineChart';
-import './Coin.css';
-
-const CACHE_EXPIRATION_TIME = 5 * 60 * 1000; // 5 minutes in milliseconds
-
-const getCachedData = (key) => {
-  const cached = localStorage.getItem(key);
-  if (!cached) return null;
-
-  const { data, timestamp } = JSON.parse(cached);
-  if (Date.now() - timestamp < CACHE_EXPIRATION_TIME) {
-    return data;
-  }
-
-  return null;
-};
-
-const setCachedData = (key, data) => {
-  const cacheEntry = {
-    data,
-    timestamp: Date.now(),
-  };
-  localStorage.setItem(key, JSON.stringify(cacheEntry));
-};
+import './Coin.css'; // Import CSS for styling
 
 const Coin = () => {
   const { id } = useParams();
@@ -32,55 +10,43 @@ const Coin = () => {
   const [historicalData, setHistoricalData] = useState(null);
   const [loading, setLoading] = useState(true);
   const { currency } = useContext(CoinContext);
+  const apiKey = import.meta.env.VITE_COINGECKO_API_KEY;
+
 
   const fetchCoinData = async () => {
-    const cacheKey = `coinData_${id}`;
-    const cachedData = getCachedData(cacheKey);
-
-    if (cachedData) {
-      setData(cachedData);
-      return;
-    }
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        'x-cg-demo-api-key':apiKey,
+      },
+    };
 
     try {
-      const res = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`, {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          'x-cg-demo-api-key': 'CG-J5EVTqkhhVwvzsyaqLWDBcKx',
-        },
-      });
+      const res = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`, options);
       const result = await res.json();
       setData(result);
-      setCachedData(cacheKey, result);
     } catch (err) {
       console.error(err);
     }
   };
 
   const fetchHistoricalData = async () => {
-    const cacheKey = `historicalData_${id}_${currency.name}`;
-    const cachedData = getCachedData(cacheKey);
-
-    if (cachedData) {
-      setHistoricalData(cachedData);
-      return;
-    }
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        'x-cg-demo-api-key': apiKey,
+      },
+    };
 
     try {
       const res = await fetch(
         `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency.name}&days=10&interval=daily`,
-        {
-          method: 'GET',
-          headers: {
-            accept: 'application/json',
-            'x-cg-demo-api-key': 'CG-J5EVTqkhhVwvzsyaqLWDBcKx',
-          },
-        }
+        options
       );
       const result = await res.json();
       setHistoricalData(result);
-      setCachedData(cacheKey, result);
     } catch (err) {
       console.error(err);
     }
@@ -114,14 +80,14 @@ const Coin = () => {
 
   return (
     <div className="coin-container">
+      {/* Left Section: Coin Info */}
       <div className="coin-info">
         <div className="coin-image">
           <img src={data.image.large} alt={data.name} />
+    
         </div>
         <div className="coin-details">
-          <h2>
-            {data.name} ({data.symbol.toUpperCase()})
-          </h2>
+          <h2>{data.name} ({data.symbol.toUpperCase()})</h2>
           <p>Rank: {data.market_cap_rank}</p>
           <p>
             Current Price: {currency.symbol}
@@ -131,8 +97,28 @@ const Coin = () => {
             Market Cap: {currency.symbol}
             {data.market_data.market_cap[currency.name].toLocaleString()}
           </p>
+          <p>
+            Market Cap Change: {data.market_data.market_cap_change_percentage_24h.toFixed(2)}%
+          </p>
+          <p>
+            24h Volume: {currency.symbol}
+            {data.market_data.total_volume[currency.name].toLocaleString()}
+          </p>
+          <p>
+            24h High: {currency.symbol}
+            {data.market_data.high_24h[currency.name].toLocaleString()}
+          </p>
+          <p>
+            24h Low: {currency.symbol}
+            {data.market_data.low_24h[currency.name].toLocaleString()}
+          </p>
+          <p>
+            24h Change: {data.market_data.price_change_percentage_24h.toFixed(2)}%
+          </p>
         </div>
       </div>
+
+      {/* Right Section: Line Chart */}
       <div className="coin-chart">
         <LineChart historicalData={historicalData} />
       </div>
