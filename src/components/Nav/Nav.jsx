@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import './Nav.css';
-import logo from '../../src/assets/logo.png';
-import arrow from "../../src/assets/arrow_icon.png";
-import { CoinContext } from '../context/CoinContext'; // Import context
+// import logo from '../../src/assets/logo.png
+// import arrow from "../../src/assets/arrow_icon.png";';
+import { CoinContext } from '../../context/CoinContext'; // Import context
 import { Link } from 'react-router-dom';
+import logo  from '../../../src/assets/logo.png'
+import arrow from '../../../src/assets/arrow_icon.png'
 
 const Nav = () => {
   const { setCurrency } = useContext(CoinContext);
