@@ -1,31 +1,57 @@
 .coin-container {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between; /* Change to space-between for better alignment */
-  gap: 20px; /* Creates space between the two sections */
-  padding: 20px;
+  justify-content: space-between;
+  gap: 30px; /* More spacing between sections for clarity */
+  padding: 30px;
+  background: linear-gradient(135deg, #121212, #1f1f1f); /* Subtle gradient background */
+  border-radius: 10px; /* Smooth border radius */
 }
 
-.coin-image img {
-  width: 180px; /* Keep image size controlled */
-  height: auto; /* Maintain aspect ratio */
+.coin-info {
+  flex: 1;
+  max-width: 45%; /* Occupy slightly less width to give the chart more room */
+  padding: 20px;
+  background-color: #1a1a1a; /* Background for contrast */
+  border: 1px solid #333; /* Subtle border for separation */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  color: #e0e0e0; /* Softer text color */
+}
+
+.coin-info h2 {
+  font-size: 1.8rem;
+  color: #4caf50; /* Accent color for the title */
   margin-bottom: 10px;
 }
 
-.coin-details {
-  text-align: left; /* Align text to left for better readability */
-  margin: 15px;
-  color: aqua;
-  font-size: larger;
-  padding: 5px;
-  
+.coin-info p {
+  margin: 10px 0;
+  font-size: 1.2rem;
 }
 
 .coin-chart {
-   width: 300px; /* Adjust width as needed */
-   max-width: 100%; /* Ensure it doesn't exceed container width */
-   margin-bottom: 20px;
-   padding: 10px;
-   border-radius: 8px;
+  flex: 1.5; /* Slightly larger width for the chart */
+  max-width: 55%; /* Restrict max width */
+  background-color: #2a2a2a; /* Background for chart section */
+  padding: 20px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.chart-container {
+  width: 100%; /* Full width within the chart section */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.coin-image img {
+  width: 120px;
+  height: auto;
+  border-radius: 50%; /* Circular coin image */
+  margin-bottom: 15px;
+  border: 2px solid #4caf50; /* Accent border for the image */
 }
