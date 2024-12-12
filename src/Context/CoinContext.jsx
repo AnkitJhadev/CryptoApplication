@@ -18,6 +18,7 @@ export const CoinContextProvider = ({ children }) => {
     try {
       const options = {
         method: "GET",
+        // mode: "no-cors",
         headers: {
           accept: "application/json",
           "x-cg-demo-api-key": apiKey, // Use environment variable

@@ -16,6 +16,7 @@ const Coin = () => {
   const fetchCoinData = async () => {
     const options = {
       method: 'GET',
+      // mode:'no-cors',
       headers: {
         accept: 'application/json',
         'x-cg-demo-api-key':apiKey,
@@ -34,6 +35,7 @@ const Coin = () => {
   const fetchHistoricalData = async () => {
     const options = {
       method: 'GET',
+      // mode:'no-cors',
       headers: {
         accept: 'application/json',
         'x-cg-demo-api-key': apiKey,

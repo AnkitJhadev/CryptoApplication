@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './Home.css'; // Your existing styles
 
 const Home = () => {
-  const { allCoins } = useContext(CoinContext);
+  const { allCoins,setCurrency,currency } = useContext(CoinContext);
 
   const [filteredCoins, setFilteredCoins] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -84,8 +84,8 @@ const Home = () => {
             <Link to={`/coin/${coin.id}`}>
               <img src={coin.image} alt={coin.name} className="coin-image" />
               <h3>{coin.name}</h3>
-              <p>Price: ${coin.current_price.toLocaleString()}</p>
-              <p>Market Cap: ${coin.market_cap.toLocaleString()}</p>
+              <p>Price:{currency.symbol} {coin.current_price.toLocaleString()}</p>
+              <p>Market Cap:{currency.symbol} {coin.market_cap.toLocaleString()}</p>
             </Link>
           </div>
         ))}
